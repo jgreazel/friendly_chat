@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(
+    // ? Don't quite understand when/why a widget needs const declaration
     const FriendlyChatApp(),
   );
 }
@@ -44,6 +45,7 @@ class ChatMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ? animations: wrap animated child in ___Transition, take in controller, parent controls animation
     return SizeTransition(
       sizeFactor: CurvedAnimation(
           parent: animationController, curve: Curves.easeInOutCubic),
@@ -149,6 +151,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
     );
   }
 
+  // ? dont entirely understand when this is called, why the need to super?
   @override
   void dispose() {
     for (var message in _messages) {
@@ -162,6 +165,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
     return Scaffold(
       appBar: AppBar(
         title: const Text('FriendlyChat'),
+        // ? what else could you Theme.of() besides context?
         elevation: Theme.of(context).platform == TargetPlatform.iOS ? 0 : 4,
       ),
       body: Container(
